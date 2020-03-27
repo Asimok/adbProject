@@ -1,5 +1,10 @@
 import os
 import time
+
+# 屏幕分辨率
+base_x = 1080
+base_y = 2340
+
 x_start = 105
 x_end = 880
 y_start = 480
@@ -13,18 +18,18 @@ friendsNum = 49
 
 def tap_screen(tap_x, tap_y):
     cmd = 'adb shell input tap {x1} {y1}'.format(
-        x1=tap_x,
-        y1=tap_y,
+        x1=tap_x / 1080 * base_x,
+        y1=tap_y / 2340 * base_y,
     )
     os.system(cmd)
 
 
 def swipe_screen(tap_sx, tap_sy, tap_ex, tap_ey, timeLen):
     cmd = 'adb shell input swipe {x1} {y1} {x2} {y2} {times}'.format(
-        x1=tap_sx,
-        y1=tap_sy,
-        x2=tap_ex,
-        y2=tap_ey,
+        x1=tap_sx / 1080 * base_x,
+        y1=tap_sy / 2340 * base_y,
+        x2=tap_ex / 1080 * base_x,
+        y2=tap_ey / 2340 * base_y,
         times=timeLen
     )
     os.system(cmd)
@@ -59,7 +64,7 @@ def changeUser():
             getGreenEnergy()
             # 退出该朋友界面
             swipe_screen(0, 900, 370, 900, 500)
-            print("收取第{}位朋友的蚂蚁能量结束".format(1+i))
+            print("收取第{}位朋友的蚂蚁能量结束".format(1 + i))
         # 再次滑动固定距离
         swipe_screen(550, 1155, 550, 1155 - 205, 1000)
 
@@ -78,7 +83,7 @@ def changeUser():
             # 退出该朋友界面
 
             swipe_screen(0, 900, 370, 900, 500)
-            print("收取第{}位朋友的蚂蚁能量结束".format(11+i))
+            print("收取第{}位朋友的蚂蚁能量结束".format(11 + i))
         # 再次滑动固定距离
         swipe_screen(550, 1155, 550, 1155 - 209, 1000)
 

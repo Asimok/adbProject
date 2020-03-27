@@ -4,6 +4,10 @@ import logging
 import os
 import time
 
+# 屏幕分辨率
+base_x = 1080
+base_y = 2340
+
 # 刷金币次数
 repeat_times = 60
 
@@ -15,10 +19,10 @@ logging.basicConfig(format='%(asctime)s %(message)s',
                     level=logging.DEBUG)
 
 
-def tap_screen(x, y, sleepTime):
+def tap_screen(tap_x, tap_y, sleepTime):
     cmd = 'adb shell input tap {x1} {y1}'.format(
-        x1=x,
-        y1=y,
+        x1=tap_x / 1080 * base_x,
+        y1=tap_y / 2340 * base_y,
     )
     os.system(cmd)
     if sleepTime > 0:
